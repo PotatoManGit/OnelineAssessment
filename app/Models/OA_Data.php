@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class OA_Data extends Model
 {
     use HasFactory;
+
+    protected $table = "OA_Data";
+    public $timestamps = false;
+    protected $primaryKey = 'id';
 }

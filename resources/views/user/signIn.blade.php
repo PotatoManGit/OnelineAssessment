@@ -12,11 +12,12 @@
 {{--        <p>用户名和密码为评教前分发的用户名密码，如果你没有，请咨询指导员</p>--}}
         {{--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>--}}
     </div>
-    @if($cause == 2)
-        <center><div class="alert alert-danger" role="alert">您没有管理员身份，无法进入管理员入口！</div></center>
-    @else
-    @endif
+
     <center><div class="col-md-offset-1 col-md-10 col-xs-12" style="margin-top: 2%">
+            @if($cause == 1)
+                <center><div class="alert alert-danger" role="alert">您还没有登录,请登录!</div></center>
+            @else
+            @endif
             <form action="{{ url('user/sign_in/check') }}" method="post">
                 @csrf
                 <div class="input-group col-xs-4" style="margin-bottom: 1%">

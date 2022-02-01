@@ -46,7 +46,7 @@ class UserControl
         if($truePassword == $password)
         {
             $ty = new UserTypeRegulate();
-            if($ty->CheckType($uid, $request->path()))
+            if($ty->CheckTypeByPath($uid, $request->path()))
             {
                 return $next($request);
             }

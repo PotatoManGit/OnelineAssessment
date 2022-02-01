@@ -13,6 +13,7 @@ return [
 
     // 数据审核
     'work/data_audit' => [1,4],
+    'work/data_audit/check' => [1,4],
 
     // 数据管理
     'work/data_Regulate' => [1,5],

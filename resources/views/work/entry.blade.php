@@ -8,7 +8,7 @@
 
     <div class="jumbotron" style="text-align: center">
         <h1>信息录入</h1>
-        <p>选择审核项目的一项进行数据录入</p>
+        <p>选择考核项目的一项进行数据录入</p>
         {{--        <p></p>--}}
         {{--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>--}}
     </div>

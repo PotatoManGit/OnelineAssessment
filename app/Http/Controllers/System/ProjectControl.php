@@ -34,6 +34,7 @@ class ProjectControl extends Controller
                 'start_at'=>$val->start_at,
                 'end_at'=>$val->end_at,
                 'setting'=>$js,
+                'formula'=>$val->formula,
                 'process'=>$val->process,
                 'update_at'=>$val->update_at,
                 'status'=>$val->status
@@ -64,15 +65,36 @@ class ProjectControl extends Controller
         return $result;
     }
 
+    /**
+     * @param $pid
+     * @return array
+     */
     public function GetOneForInput($pid): array
     {
         $data = $this->dbp->GetDataByPid($pid);
-        $js = json_decode($data->setting);
+        $js = json_decode($data->setting, true);
         return [
             'name'=>$data->name,
-            'num'=>$js->num,
-            'note'=>$js->note,
-            'setting'=>$js->setting,
+            'num'=>$js['num'],
+            'note'=>$js['note'],
+            'setting'=>$js['setting'],
         ];
+    }
+
+    /**
+     * @param $pid
+     * @param $key
+     * @return mixed
+     */
+    public function GetSettingByKey($pid, $key)
+    {
+        $data = $this->dbp->GetDataByPid($pid);
+        $js = json_decode($data->setting, true);
+        return $js['setting'][$key];
+    }
+
+    public function GetProcessByPid($pid)
+    {
+        return $this->dbp->GetProcessByPid($pid);
     }
 }

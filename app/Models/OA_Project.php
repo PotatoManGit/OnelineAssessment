@@ -29,4 +29,22 @@ class OA_Project extends Model
     {
         return $this->where('pid', $pid)->first();
     }
+
+    /**
+     * @param $pid
+     * @return mixed
+     */
+    public function GetProcessByPid($pid)
+    {
+        return $this->where('pid', $pid)->value('process');
+    }
+
+    /**
+     * @param $pid
+     * @return mixed
+     */
+    public function GetNameByPid($pid)
+    {
+        return $this->where('pid', $pid)->value('name');
+    }
 }

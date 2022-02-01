@@ -11,11 +11,11 @@ class ProjectControl extends Controller
     /**
      * @var OA_Project
      */
-    private OA_Project $dbt;
+    private OA_Project $dbp;
 
     public function __construct()
     {
-        $this->dbt = new OA_Project();
+        $this->dbp = new OA_Project();
     }
 
     /**
@@ -23,19 +23,21 @@ class ProjectControl extends Controller
      */
     public function GetAll(): array
     {
-        $data = $this->dbt->GetAll();
+        $data = $this->dbp->GetAll();
         $result = array();
         foreach($data as $val)
         {
             $js = json_decode($val->setting, true);
-            $result[] = ['name'=>$val->name,
+            $result[] = [
+                'pid'=>$val->pid,
+                'name'=>$val->name,
                 'start_at'=>$val->start_at,
-                'end_ar'=>$val->end_at,
+                'end_at'=>$val->end_at,
                 'setting'=>$js,
                 'process'=>$val->process,
-                'priority'=>$val->priority,
                 'update_at'=>$val->update_at,
-                'status'=>$val->status];
+                'status'=>$val->status
+            ];
         }
         return $result;
     }
@@ -49,11 +51,28 @@ class ProjectControl extends Controller
         $result = array();
         foreach($data as $val)
         {
-            $result[] = ['name'=>$val['name'],
+            $result[] = [
+                'pid'=>$val['pid'],
+                'name'=>$val['name'],
                 'start_at'=>$val['start_at'],
                 'end_at'=>$val['end_at'],
-                'status'=>$val['status']];
+                'process'=>$val['process'],
+                'note'=>$val['setting']['note'],
+                'status'=>$val['status']
+            ];
         }
         return $result;
+    }
+
+    public function GetOneForInput($pid): array
+    {
+        $data = $this->dbp->GetDataByPid($pid);
+        $js = json_decode($data->setting);
+        return [
+            'name'=>$data->name,
+            'num'=>$js->num,
+            'note'=>$js->note,
+            'setting'=>$js->setting,
+        ];
     }
 }

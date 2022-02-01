@@ -3,7 +3,7 @@
 @section("content")
     <head>
         <meta charset="UTF-8">
-        <title>十佳教师评选</title>
+        <title>线上考核系统</title>
     </head>
     <div style="text-align: center">
         <div class="jumbotron">

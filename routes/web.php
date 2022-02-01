@@ -23,5 +23,8 @@ Route::any('/', [Index::class, "index"]);
 // 用户相关路由
 Route::any('/user/sign_in', [SignIn::class, "SignIn"]);
 Route::post('/user/sign_in/check', [SignIn::class, "SignInCheck"]);
+
+// 工作系统相关路由
 Route::any('/work', [Work::class, 'Work'])->middleware('user_control');
-Route::any('/work', [Entry::class, 'Entry'])->middleware('user_control');
+Route::any('/work/data_entry', [Entry::class, 'Entry'])->middleware('user_control');
+Route::any('/work/data_entry/input', [Entry::class, 'EntryInput'])->middleware('user_control');

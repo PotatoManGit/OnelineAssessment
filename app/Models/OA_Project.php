@@ -20,4 +20,13 @@ class OA_Project extends Model
     {
         return $this->get();
     }
+
+    /**
+     * @param $pid
+     * @return mixed
+     */
+    public function GetDataByPid($pid)
+    {
+        return $this->where('pid', $pid)->first();
+    }
 }

@@ -104,7 +104,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="https://www-potatost-user.oss-cn-hangzhou.aliyuncs.com/TopTenTeachers/logo.png">
-    <title>线上考核系统</title>
+{{--    <title>线上考核系统</title>--}}
 
     <style type="text/css" >
         .Bg {

@@ -1,4 +1,4 @@
 <?php
 return[
-  "cookieHoldTime_signIn"=>1800,
+  "cookieHoldTime_signIn"=>3600,
 ];

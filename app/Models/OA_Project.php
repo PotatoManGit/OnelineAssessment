@@ -47,4 +47,21 @@ class OA_Project extends Model
     {
         return $this->where('pid', $pid)->value('name');
     }
+
+    /**
+     * @return mixed
+     */
+    public function GetAllProjectPid()
+    {
+        return $this->pluck('pid');
+    }
+
+    /**
+     * @param $pid
+     * @return mixed
+     */
+    public function GetFormulaByPid($pid)
+    {
+        return $this->where('pid', $pid)->value('formula');
+    }
 }

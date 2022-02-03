@@ -81,17 +81,21 @@ class OA_Tmp extends Model
      * @param $tid
      * @return mixed
      */
-    public function ChangeStatusByTid($tid)
+    public function ChangeStatusByTid($tid): bool
     {
-        return $this->where('tid', $tid)
-            ->update(['status' => 3]);
+        if($this->where('tid', $tid)->value('status') == 2)
+            return true;
+        else
+            return $this->where('tid', $tid)
+                ->update(['status' => 2]);
     }
 
     /**
      * @param $tid
+     * @return mixed
      */
     public function DelByTid($tid)
     {
-        $this->where('tid', $tid)->delete();
+        return $this->where('tid', $tid)->delete();
     }
 }

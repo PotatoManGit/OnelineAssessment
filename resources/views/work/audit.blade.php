@@ -23,6 +23,7 @@
                         <th>录入支部</th>
                         <th>数据</th>
                         <th>录入时间</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                     @foreach($data as $key=>$val)

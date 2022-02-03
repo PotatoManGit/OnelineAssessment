@@ -21,4 +21,12 @@ class OA_Class extends Model
     {
         return $this->where('cid',$cid)->value('name');
     }
+
+    /**
+     * @return mixed
+     */
+    public function GetAllClassCid()
+    {
+        return $this->pluck('cid');
+    }
 }

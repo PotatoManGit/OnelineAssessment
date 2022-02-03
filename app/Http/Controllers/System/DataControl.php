@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class DataControl extends Controller
 {
-    public function PushData($pid, $uid, $cid, $data)
+    public function PushData($pid, $uid, $cid, $data): string
     {
 
         $pro = (new ProjectControl())->GetProcessByPid($pid);

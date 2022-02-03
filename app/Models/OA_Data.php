@@ -47,11 +47,27 @@ class OA_Data extends Model
 
     /**
      * @param $OA_Tmp
-     * @return int
+     * @return mixed
      */
-    public function AddOneByTmp($OA_Tmp): int
+    public function AddOneByTmp($OA_Tmp)
     {
-        $this->insert($OA_Tmp);
-        return 1;
+
+        return $this->insert([
+            'pid' => $OA_Tmp->pid,
+            'uid' => $OA_Tmp->uid,
+            'cid' => $OA_Tmp->cid,
+            'data' => $OA_Tmp->data,
+            'update_at' => time()
+        ]);
+    }
+
+    /**
+     * @param $pid
+     * @param $cid
+     * @return mixed
+     */
+    public function GetOneByPidCid($pid, $cid)
+    {
+        return $this->where('cid', $cid)->where('pid', $pid)->first();
     }
 }

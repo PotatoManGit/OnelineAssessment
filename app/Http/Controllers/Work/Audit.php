@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Work;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\System\DataControl;
+use App\Http\Controllers\System\DataProcessing;
 use App\Http\Controllers\System\ProjectControl;
 use App\Models\OA_Class;
 use App\Models\OA_Data;
@@ -24,29 +26,7 @@ class Audit extends Controller
 
         $data = (new OA_Tmp())->ListAll();
 
-        $tmpData = array();
-        foreach($data as $val)
-        {
-            $text = "";
-            foreach($val['data']['data'] as $key=>$item)
-            {
-                $tmp = '';
-                if($key != 0)
-                {
-                    if($item['type'] == 'bool')
-                    {
-                        if($item['data'] == 1)
-                            $tmp = $item['name'] . ': 是';
-                        else
-                            $tmp = $item['name'] . ': 否';
-                    }
-                    else
-                        $tmp = $item['name'] . ': ' . $item['data'];
-                }
-                $text .= $tmp.'\n';
-            }
-            $tmpData[] = $text;
-        }
+        $tmpData = (new DataProcessing())->FormattingDataToString($data);
 
         return view('work.audit', compact('data', 'tmpData', 'dbp', 'dbu', 'dbc'));
     }
@@ -60,13 +40,28 @@ class Audit extends Controller
         else
         {
             if($request['status'] == 1)
-                (new OA_Data())->AddOneByTmp((new OA_Tmp())->GetByTid((int)$request['tid']));
-            elseif($request['status'] == 2)
-                (new OA_Tmp())->ChangeStatusByTid((int)$request['tid']);
-            elseif($request['status'] == 3)
-                (new OA_Tmp())->DelByTid((int)$request['tid']);
+                if((new OA_Data())->AddOneByTmp((new OA_Tmp())->GetByTid((int)$request['tid'])))
+                {
+                    (new OA_Tmp())->DelByTid((int)$request['tid']);
+                    return redirect('/system/work_success?text=操作成功');
+                }
 
-            return redirect('/system/work_success?text=操作成功');
+                else
+                    return redirect('/system/work_error?cause=操作失败！数据库错误！');
+
+            elseif($request['status'] == 2)
+                if((new OA_Tmp())->ChangeStatusByTid((int)$request['tid']))
+                    return redirect('/system/work_success?text=操作成功');
+                else
+                    return redirect('/system/work_error?cause=操作失败！数据库错误！');
+
+            elseif($request['status'] == 3)
+                if((new OA_Tmp())->DelByTid((int)$request['tid']))
+                    return redirect('/system/work_success?text=操作成功');
+                else
+                    return redirect('/system/work_error?cause=操作失败！数据库错误！');
+            else
+                return redirect('/system/work_error?cause=操作失败！状态码错误！请退回再次尝试或联系管理员！');
         }
     }
 }

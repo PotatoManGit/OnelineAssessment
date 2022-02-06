@@ -211,11 +211,20 @@ class DataProcessing extends Controller
      */
     public function SortAllData($data): array
     {
-        $first = $data[0];
-        $len = sizeof($first);
-        unset($data[0]);
-        $tmp = $this->ARRAY_sort_by_field($data, $len - 1, true);
-        array_push($tmp, $first);
-        return [1, $tmp];
+        if(!$data[0])
+            return [0, $data[1]];
+        else
+        {
+            $first = $data[1][0];
+            $len = sizeof($first);
+            unset($data[1][0]);
+            $tmp = $this->ARRAY_sort_by_field($data[1], $len - 1, true);
+
+            $reData[] = $first;
+            foreach($tmp as $val)
+                $reData[] = $val;
+
+            return [1, $reData];
+        }
     }
 }

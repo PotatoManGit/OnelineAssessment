@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Work\Entry;
 use App\Http\Controllers\System\OperationFinished;
 use App\Http\Controllers\Work\Audit;
+use App\Http\Controllers\Work\DataRegulate;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,5 +37,7 @@ Route::any('/work/data_entry/input', [Entry::class, 'EntryInput'])->middleware('
 Route::any('/work/data_entry/input/check', [Entry::class, 'EntryInputCheck'])->middleware('user_control');
 Route::any('/work/data_audit', [Audit::class, 'Audit'])->middleware('user_control');
 Route::any('/work/data_audit/check', [Audit::class, 'AuditCheck'])->middleware('user_control');
+Route::any('/work/data_view', [DataRegulate::class, 'DataView'])->middleware('user_control');
+Route::any('/work/data_view/check', [DataRegulate::class, 'DataViewCheck'])->middleware('user_control');
 
 Route::any('test', [\App\Http\Controllers\Test::class, 'Test']);

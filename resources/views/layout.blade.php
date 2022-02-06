@@ -152,12 +152,12 @@
 {{--                    <li class="active"><a href="#">首页 <span class="sr-only">(current)</span></a></li>--}}
                     <li><a href="/">首页</a></li>
                     <li><a href="{{ url('work/') }}">控制台</a></li>
-                    <li><a href="{{ url('work/data_query') }}">数据查询</a></li>
                     <li><a href="{{ url('work/data_entry') }}">数据录入</a></li>
                     <li><a href="{{ url('work/data_audit') }}">数据审核</a></li>
-                    <li><a href="{{ url('work/data_Regulate') }}">数据管理</a></li>
+                    <li><a href="{{ url('work/data_view') }}">数据查询</a></li>
+                    <li><a href="{{ url('work/data_regulate') }}">数据管理</a></li>
                     <li><a href="{{ url('work/project_setting') }}">考核项目设置</a></li>
-                    <li><a href="{{ url('admin/user_Regulate') }}">用户管理</a></li>
+                    <li><a href="{{ url('admin/user_regulate') }}">用户管理</a></li>
                     <li><a href="{{ url('admin/system_control') }}">系统管理</a></li>
 {{--                    <li><a href="{{ url('public/') }}">评选结果公布</a></li>--}}
 {{--                    <li class="dropdown">--}}

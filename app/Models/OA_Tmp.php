@@ -91,6 +91,24 @@ class OA_Tmp extends Model
     }
 
     /**
+     * @param $OA_Data
+     * @param $status
+     * @return mixed
+     */
+    public function AddOneByData($OA_Data, $status)
+    {
+
+        return $this->insert([
+            'pid' => $OA_Data->pid,
+            'uid' => $OA_Data->uid,
+            'cid' => $OA_Data->cid,
+            'data' => $OA_Data->data,
+            'status'=>$status,
+            'update_at' => $OA_Data->update_at
+        ]);
+    }
+
+    /**
      * @param $tid
      * @return mixed
      */

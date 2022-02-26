@@ -2,20 +2,40 @@
 
 @section("content")
 
-    <head>
-        <meta charset="UTF-8">
-        <title>数据查询</title>
-    </head>
-    <div class="jumbotron" style="text-align: center">
-        <h1>数据查询和导出</h1>
-        <p>在此显示团支部的分数数据</p>
-        <p>默认显示所有数据，如果要进行筛选，请在下方筛选栏中进行相关操作</p>
-        <p><b>进行筛选后，请务必先点击查询，查询成功后再点击导出</b></p>
-        {{--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>--}}
-    </div>
+    @if($mode == 1)
+        <head>
+            <meta charset="UTF-8">
+            <title>数据管理</title>
+        </head>
+        <div class="jumbotron" style="text-align: center">
+            <h1>数据查询，管理和导出</h1>
+            <p>在此显示团支部的分数数据</p>
+            <p>默认显示所有数据，如果要进行筛选，请在下方筛选栏中进行相关操作</p>
+            <p><b>进行筛选后，请务必先点击查询，查询成功后再点击导出</b></p>
+            <p>点击操作栏的<b>编辑</b>进行数据管理</p>
+            {{--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>--}}
+        </div>
+    @else
+        <head>
+            <meta charset="UTF-8">
+            <title>数据查询</title>
+        </head>
+        <div class="jumbotron" style="text-align: center">
+            <h1>数据查询和导出</h1>
+            <p>在此显示团支部的分数数据</p>
+            <p>默认显示所有数据，如果要进行筛选，请在下方筛选栏中进行相关操作</p>
+            <p><b>进行筛选后，请务必先点击查询，查询成功后再点击导出</b></p>
+            {{--        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>--}}
+        </div>
+    @endif
+
 
     <div class="panel panel-default ">
-        <form class="form-inline" method="post" action="{{ url('work/data_view/check') }}">
+        @if($mode == 1)
+            <form class="form-inline" method="post" action="{{ url('work/data_regulate/check') }}">
+        @else
+            <form class="form-inline" method="post" action="{{ url('work/data_view/check') }}">
+        @endif
             @csrf
             <div class="panel-body container-fluid ">
                 <div class="form-group">
@@ -109,7 +129,11 @@
                             @endforeach
 
                             @if($mode == 1)
-                                <td>删除</td>
+                                <td>
+                                    <a href="{{ url('/work/data_regulate/regulate/check?cid='.$val[0]) }}">
+                                        <button type="button" class="btn btn-primary btn-xs">编辑</button>
+                                    </a>
+                                </td>
                             @endif
                         </tr>
                     @endforeach

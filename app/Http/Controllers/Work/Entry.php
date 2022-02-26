@@ -30,15 +30,35 @@ class Entry extends Controller
             echo '<script language="JavaScript">;alert("请先选择一项审核项目")</script>;';
             return redirect('/data_entry');
         }
+
+        $edit = false;
+        $cid = 0;
+        $did = 0;
+        if(!empty($request['type']) && !empty($request['cid']) && $request['type'] == 'edit' && !empty($request['did']))
+        {
+            $edit = true;
+            if(is_numeric($request['cid']) && is_numeric($request['did']))
+            {
+                $cid = (int)$request['cid'];
+                $did = (int)$request['did'];
+            }
+            else
+                return redirect('/system/work_error?cause=编辑失败！推测为班级cid或数据did错误，请重试或联系管理员！');
+        }
+
+
         $pid = $request['pid'];
         $data = (new ProjectControl())->GetOneForInput((int)$pid);
         $dbc = new OA_Class();
-        return view('work.entryInput', compact('data', 'pid', 'dbc'));
+
+        $pc = new ProjectControl();
+        $index = $pc->GetOneForInput($pid)['setting'][0]['item'];
+
+        return view('work.entryInput', compact('data', 'pid', 'dbc', 'edit', 'cid', 'index', 'did'));
     }
 
     public function EntryInputCheck(Request $request)
     {
-        echo '<script language="JavaScript">;alert("12")</script>;';
         $pc = new ProjectControl();
         $pid = (int)$request['pid'];
         $uid = Crypt::decryptString($_COOKIE['tokenId']);
@@ -67,6 +87,11 @@ class Entry extends Controller
                 $data .= ','.$tmp;
         }
         $data .= ']}';
+
+        if(!empty($_POST['edit']) && !empty($_POST['did']))
+        {
+            return redirect((new DataControl())->PushData($pid, $uid, $cid, $data, true, $_POST['did']));
+        }
 
         return redirect((new DataControl())->PushData($pid, $uid, $cid, $data));
     }

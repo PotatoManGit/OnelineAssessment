@@ -24,8 +24,18 @@
                                 <div class="col-sm-10">
                                     @foreach($val['item'] as $i=>$item)
                                         <label class="radio-inline">
-                                            <input type="radio" name="{{ $key }}" required
-                                                   id="{{ $key }}" value="{{ $i }}">
+                                            @if($edit)
+                                                @if($index[$i] == $cid)
+                                                    <input type="radio" name="{{ $key }}" required
+                                                           id="{{ $key }}" value="{{ $i }}" checked>
+                                                @else
+                                                    <input type="radio" name="{{ $key }}" disabled
+                                                           id="{{ $key }}" value="{{ $i }}">
+                                                @endif
+                                            @else
+                                                <input type="radio" name="{{ $key }}"
+                                                       id="{{ $key }}" value="{{ $i }}">
+                                            @endif
                                             {{ $dbc->GetNameByCid($item) }}
                                         </label>
                                     @endforeach
@@ -65,9 +75,19 @@
                         @endif
                     @endforeach
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">提交</button>
-                        </div>
+                        @if($edit)
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <label>
+                                    <input hidden name="edit" value="1">
+                                    <input hidden name="did" value="{{ $did }}">
+                                </label>
+                                <button type="submit" class="btn btn-default">修改</button>
+                            </div>
+                        @else
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default">提交</button>
+                            </div>
+                        @endif
                     </div>
                 </form>
             </div>

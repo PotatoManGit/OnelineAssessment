@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-12 col-xs-12">
         <div class="panel panel-primary">
-            <div class="panel-heading" id="userList">考核项目列表</div>
+            <div class="panel-heading" id="userList">待审核列表</div>
             <div class="panel-body">
                 <table class="table table-hover">
                     <tr>
@@ -37,8 +37,10 @@
                             <td>
                                 @if($val['status'] == 1)
                                     待审核
-                                @elseif($val['status'] == 3)
+                                @elseif($val['status'] == 2)
                                     保留重审
+                                @elseif($val['status'] == 4)
+                                    退回重审
                                 @endif
                             </td>
                             <td>

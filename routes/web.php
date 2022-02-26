@@ -39,5 +39,8 @@ Route::any('/work/data_audit', [Audit::class, 'Audit'])->middleware('user_contro
 Route::any('/work/data_audit/check', [Audit::class, 'AuditCheck'])->middleware('user_control');
 Route::any('/work/data_view', [DataRegulate::class, 'DataView'])->middleware('user_control');
 Route::any('/work/data_view/check', [DataRegulate::class, 'DataViewCheck'])->middleware('user_control');
+Route::any('/work/data_regulate', [DataRegulate::class, 'DataRegulate'])->middleware('user_control');
+Route::any('/work/data_regulate/check', [DataRegulate::class, 'DataRegulateCheck'])->middleware('user_control');
+Route::any('/work/data_regulate/regulate/check', [DataRegulate::class, 'DataRegulateEditCheck'])->middleware('user_control');
 
 Route::any('test', [\App\Http\Controllers\Test::class, 'Test']);

@@ -19,8 +19,9 @@ return [
     'work/data_audit/check' => [1,4],
 
     // 数据管理
-    'work/data_Regulate' => [1,5],
-    'work/data_Regulate/check' => [1,5],
+    'work/data_regulate' => [1,5],
+    'work/data_regulate/check' => [1,5],
+    'work/data_regulate/regulate/check' => [1,5],
 
     // 项目设置
     'work/project_setting' => [1,6],

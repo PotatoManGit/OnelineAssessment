@@ -8,6 +8,7 @@ use App\Http\Controllers\Work\Entry;
 use App\Http\Controllers\System\OperationFinished;
 use App\Http\Controllers\Work\Audit;
 use App\Http\Controllers\Work\DataRegulate;
+use App\Http\Controllers\Work\ProjectSetting;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,11 @@ Route::any('/work/data_view/check', [DataRegulate::class, 'DataViewCheck'])->mid
 Route::any('/work/data_regulate', [DataRegulate::class, 'DataRegulate'])->middleware('user_control');
 Route::any('/work/data_regulate/check', [DataRegulate::class, 'DataRegulateCheck'])->middleware('user_control');
 Route::any('/work/data_regulate/regulate/check', [DataRegulate::class, 'DataRegulateEditCheck'])->middleware('user_control');
+Route::any('/work/project_setting', [ProjectSetting::class, 'ProjectSetting'])->middleware('user_control');
+
 
 Route::any('test', [\App\Http\Controllers\Test::class, 'Test']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

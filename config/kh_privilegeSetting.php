@@ -25,6 +25,8 @@ return [
 
     // 项目设置
     'work/project_setting' => [1,6],
+    'work/project_setting/edit' => [1,6],
+    'work/project_setting/edit/check' => [1,6],
 
     // 用户管理
     'admin/user_regulate' => [1,2,3,4,5,6,7],

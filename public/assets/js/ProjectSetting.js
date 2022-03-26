@@ -17,9 +17,10 @@ function step01() {
     var startAt = $('#start_at').val();
     var endAt = $('#end_at').val();
     var process = $('#process').val();
+    var status = $('#status').val();
     var khClass = getCheckbox('kh-class').toString()
 
-    if(name === "" || startAt === "" || endAt === "" || process === "" || khClass === "")
+    if(name === "" || startAt === "" || endAt === "" || process === "" || status === "" || khClass === "")
     {
         return false;
     }
@@ -30,6 +31,7 @@ function step01() {
         document.cookie='P_end_at=' + endAt;
         document.cookie='P_process=' + process;
         document.cookie='P_kh_class=' + khClass;
+        document.cookie='P_kh_status=' + status;
         return true;
     }
 }
@@ -50,8 +52,8 @@ function step02(num) {
     $('#data-show').val(last);
     $('#num').val(num + 1);
 
-    document.cookie='p_dataName_' + num + '='+ data_name;
-    document.cookie='p_dataName_' + num + '='+ data_type;
+    document.cookie='P_dataName_' + num + '='+ data_name;
+    document.cookie='P_dataType_' + num + '='+ data_type;
 
     return true;
 }

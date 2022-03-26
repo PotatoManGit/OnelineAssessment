@@ -64,4 +64,28 @@ class OA_Project extends Model
     {
         return $this->where('pid', $pid)->value('formula');
     }
+
+    /**
+     * @param $name
+     * @param $start_at
+     * @param $end_at
+     * @param $setting
+     * @param $formula
+     * @param $process
+     * @param $status
+     * @return mixed
+     */
+    public function ProjectCreated($name, $start_at, $end_at, $setting, $formula, $process, $status)
+    {
+        return $this->insert([
+            'name'=>$name,
+            'start_at'=>$start_at,
+            'end_at'=>$end_at,
+            'setting'=>$setting,
+            'formula'=>$formula,
+            'process'=>$process,
+            'update_at'=>time(),
+            'status'=>$status
+        ]);
+    }
 }

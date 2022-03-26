@@ -93,6 +93,10 @@ class ProjectControl extends Controller
         return $js['setting'][$key];
     }
 
+    /**
+     * @param $pid
+     * @return mixed
+     */
     public function GetProcessByPid($pid)
     {
         return $this->dbp->GetProcessByPid($pid);

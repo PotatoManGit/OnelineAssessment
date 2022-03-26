@@ -3,6 +3,7 @@
 use App\Http\Controllers\Index;
 use App\Http\Controllers\User\SignIn;
 use App\Http\Controllers\Work\Work;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Work\Entry;
 use App\Http\Controllers\System\OperationFinished;
@@ -44,6 +45,8 @@ Route::any('/work/data_regulate', [DataRegulate::class, 'DataRegulate'])->middle
 Route::any('/work/data_regulate/check', [DataRegulate::class, 'DataRegulateCheck'])->middleware('user_control');
 Route::any('/work/data_regulate/regulate/check', [DataRegulate::class, 'DataRegulateEditCheck'])->middleware('user_control');
 Route::any('/work/project_setting', [ProjectSetting::class, 'ProjectSetting'])->middleware('user_control');
+Route::any('/work/project_setting/edit', [ProjectSetting::class, 'ProjectEdit'])->middleware('user_control');
+Route::any('/work/project_setting/edit/check', [ProjectSetting::class, 'ProjectCheck'])->middleware('user_control');
 
 
 Route::any('test', [\App\Http\Controllers\Test::class, 'Test']);

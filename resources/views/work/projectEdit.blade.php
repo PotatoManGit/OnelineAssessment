@@ -97,15 +97,19 @@
     <div class="panel panel-primary" hidden id="formula-setting">
         <div class="panel-heading">设置公式</div>
         <div class="panel-body">
+            说明：~~~未完成~~~好懒啊~~~累了~~~睡了~~~^_^！
             <div class="form-group">
-                <label for="data-show">数据条目信息（无需且不可编辑）</label>
-                <textarea class="form-control" id="data-show" rows="3" disabled></textarea>
+                <label for="fo-data-show">数据条目信息（无需且不可编辑）</label>
+                <textarea class="form-control" id="fo-data-show" rows="3" disabled></textarea>
             </div>
             <div class="form-group">
-                <label for="data-name">信息条目名称</label>
-                <input type="text" class="form-control" id="data-name" maxlength="20" placeholder="输入小于20个字的名字">
+                <label for="formula">请输入公式   result=</label>
+                <input type="text" class="form-control" id="formula" maxlength="100" placeholder="输入小于100个字符的公式">
             </div>
-
+            <div class="form-group" id="step03-err-em" hidden>
+                <label style="color: red">请正确填写公式！</label>
+            </div>
+            <button type="button" id="step03-btn" class="btn btn-default">提交-下一步</button>
         </div>
     </div>
     <div class="panel panel-primary" hidden id="finish">
@@ -176,9 +180,30 @@
         });
 
         $('#step02-btn-next').click(function () {
-            $('#dataSetting').attr('hidden', 'hidden');
-            $('#finish').removeAttr('hidden');
+            if(Number($('#num').val()) === 1)
+                $('#step02-err-em').removeAttr('hidden');
+            else
+            {
+                $('#dataSetting').attr('hidden', 'hidden');
+                $('#formula-setting').removeAttr('hidden');
+            }
+
+            step03_0();
         });
+
+        $('#step03-btn').click(function () {
+            if(step03()) {
+                $('#formula-setting').attr('hidden', 'hidden');
+                $('#finish').removeAttr('hidden');
+            }
+            else
+                $('#step03-err-em').removeAttr('hidden');
+        })
+
+        // $('#step02-btn-next').click(function () {
+        //     $('#dataSetting').attr('hidden', 'hidden');
+        //     $('#finish').removeAttr('hidden');
+        // });
 
     </script>
 @stop
